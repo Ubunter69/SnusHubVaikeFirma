@@ -34,7 +34,7 @@ $edit_product = null;
 if (isset($_GET['edit_product'])) {
     $id = (int)$_GET['edit_product'];
     $res = mysqli_query($connect, "SELECT * FROM products WHERE id = $id");
-    $edit_product = mysqli_fetch_assoc($res);
+    $edit_product = mysqli_fetch_assoc($res);// Võtab päringu tulemuse esimese rea ja teisendab selle assotsiatiivseks massiiviks
 }
 ?>
 <!DOCTYPE html>
@@ -93,8 +93,8 @@ if (isset($_GET['edit_product'])) {
                     while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td><img src="images/<?= htmlspecialchars($row['image'] ?? 'no-image.png') ?>" style="width: 40px; height: 40px; object-fit: cover;" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Pilt+puudub'"></td>
-                            <td><?= htmlspecialchars($row['name']) ?></td>
-                            <td><?= htmlspecialchars($row['category'] ?? '-') ?></td>
+                            <td><?= htmlspecialchars($row['name']) ?></td>// Kuvab toote nime turvaliselt (väldib XSS rünnakuid)
+                            <td><?= htmlspecialchars($row['category'] ?? '-') ?></td>// Kuvab kategooria, kui puudub siis näitab "-"
                             <td><?= (int)($row['stock'] ?? 0) ?></td>
                             <td><?= number_format($row['price'], 2) ?> €</td>
                             <td>
@@ -119,7 +119,7 @@ if (isset($_GET['edit_product'])) {
             <div class="grid">
                 <?php
                 $result = mysqli_query($connect, "SELECT * FROM gallery ORDER BY id DESC");
-                while ($row = mysqli_fetch_assoc($result)): ?>
+                while ($row = mysqli_fetch_assoc($result)): ?>// Läbib kõik tulemused ükshaaval
                     <div class="item">
                         <img src="images/<?= htmlspecialchars($row['image_name']) ?>" alt="" style="max-height: 150px; object-fit: cover;">
                         <p><?= htmlspecialchars($row['description']) ?></p>
