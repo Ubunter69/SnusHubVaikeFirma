@@ -2,8 +2,10 @@
 include "config.php";
 include_once "functions.php";
 
+// Muutuja teadete (veateade või info) salvestamiseks
 $message = "";
 
+// Kontrollib, kas kasutaja vajutas registreerimise nuppu
 if (isset($_POST['signup'])) {
     $result = registreeri_kasutaja($connect, $_POST['username'], $_POST['password']);
     if ($result === true) {
