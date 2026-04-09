@@ -35,7 +35,7 @@ if (isset($_POST['login'])) {
         
         <?php if ($error): ?>
             <p style="color: #e53e3e; margin-bottom: 1rem;"><?= $error ?></p>
-        <?php endif; ?>
+        <?php endif; ?><!See on PHP alternatiivne süntaks HTML-i jaoks!>
 
         <form method="POST">
             <label>Kasutajanimi</label>
